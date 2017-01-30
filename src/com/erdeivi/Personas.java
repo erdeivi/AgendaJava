@@ -1,12 +1,28 @@
 package com.erdeivi;
 
+import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class Personas {
-    private LinkedList<Persona> agenda = new LinkedList<>();
+    public LinkedList<Persona> agenda = new LinkedList<>();
 
-    public void addPerson(){
+    public void createFile(String registro, LinkedList<Persona> agenda)
+            throws IOException {
+        FileWriter writer = new FileWriter("registro.txt");
+        int size = agenda.size();
+        for (int i=0;i<size;i++) {
+            String str = agenda.get(i).toString();
+            writer.write(str);
+            if(i < size-1) {//This prevent creating a blank ke at the end of the file**
+                writer.write("\n");
+            }
+        }
+        writer.close();
+    }
+
+    public void addPerson() {
         Scanner scanner = new Scanner(System.in);
 
         Persona p = new Persona();
@@ -20,6 +36,7 @@ public class Personas {
 
         agenda.add(p);
     }
+
 
     public int countPerson(){
         return agenda.size();
@@ -48,6 +65,27 @@ public class Personas {
         }catch (Exception e){
             System.out.println("Error. Introduzca un número válido");
         }
+    }
+
+    public LinkedList<String>readFile(String registro) {
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(registro);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        LinkedList<String> lines = new LinkedList<String>();
+        String line = null;
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                lines.add(line);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines;
     }
 
 

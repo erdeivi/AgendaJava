@@ -1,14 +1,20 @@
 package com.erdeivi;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         boolean end = false;
 
         Personas personas = new Personas();
 
         Title.printTitle();
 
+        personas.createFile("registro", personas.agenda);
+        personas.readFile("registro.txt");
         while (!end) {
             System.out.print("(" + personas.countPerson() + ") > ");
 
