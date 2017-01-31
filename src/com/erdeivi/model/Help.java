@@ -1,4 +1,4 @@
-package com.erdeivi;
+package com.erdeivi.model;
 
 public class Help {
     public static void printHelp(){

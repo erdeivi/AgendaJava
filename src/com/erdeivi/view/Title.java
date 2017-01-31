@@ -1,4 +1,4 @@
-package com.erdeivi;
+package com.erdeivi.view;
 
 public class Title {
     public static void printTitle(){

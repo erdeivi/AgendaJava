@@ -1,4 +1,4 @@
-package com.erdeivi;
+package com.erdeivi.view;
 
 import java.util.Scanner;
 

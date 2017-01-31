@@ -1,4 +1,6 @@
-package com.erdeivi;
+package com.erdeivi.managers;
+
+import com.erdeivi.model.Command;
 
 public class CommandParser {
 
