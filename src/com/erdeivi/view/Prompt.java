@@ -3,6 +3,7 @@ package com.erdeivi.view;
 import java.util.Scanner;
 
 public class Prompt {
+
     public static void print(){
         System.out.print("> ");
     }

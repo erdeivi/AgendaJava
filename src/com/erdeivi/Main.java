@@ -25,7 +25,21 @@ public class Main {
 
         Title.printTitle();
 
+        if(save.readFile("registro.txt")!=null) {
+            data = save.readFile("registro.txt");
+            for (int i = 0; i < data.size(); i = i + 2) {
+                Persona pers = new Persona();
+                pers.setName(data.get(i));
+                pers.setPhone(data.get(i+1));
+                personas.cargar(pers);
+            }
+        }else{
+
+
+        }
+
         while (!end) {
+
             System.out.print("(" + personas.countPerson() + ") > ");
 
             String command = Prompt.read();
@@ -36,16 +50,17 @@ public class Main {
                     personas.addPerson();
                     break;
                 case QUIT:
-                    for (Persona contacto : personas.returnAgenda()) {
-                        String todosDatos;
-                        todosDatos = contacto.getName() + contacto.getPhone();
-                        try{
-                            data.add(todosDatos);
-                            save.createFile("registro.txt",data);
-                        }catch (IOException e){}
+                    List<String> todosDatos = new LinkedList<>();
+
+                    for (int i = 0; i < personas.getAgenda().size(); i++) {
+                        Persona p = personas.getAgenda().get(i);
+                        todosDatos.add(p.getName() + "\n" + p.getPhone());
                     }
 
-                    save.createFile("registro.txt", data);
+                    try{
+                        save.createFile("registro.txt",todosDatos);
+                    }catch (IOException e){}
+
                     end = true;
                     break;
                 case HELP:

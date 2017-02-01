@@ -9,6 +9,14 @@ public class Personas {
 
     public LinkedList<Persona> agenda = new LinkedList<>();
 
+    public LinkedList<Persona> getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(LinkedList<Persona> agenda) {
+        this.agenda = agenda;
+    }
+
     public void addPerson() {
         Scanner scanner = new Scanner(System.in);
 
@@ -55,5 +63,9 @@ public class Personas {
         }catch (Exception e){
             System.out.println("Error. Introduzca un número válido");
         }
+    }
+
+    public void cargar(Persona pers) {
+        agenda.add(pers);
     }
 }

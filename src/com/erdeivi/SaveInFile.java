@@ -22,38 +22,29 @@ public class SaveInFile {
         writer.close();
     }
 
-    public List<Persona>readFile(String fileName) {
+    public List<String>readFile(String registro) {
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader(fileName);
+            fileReader = new FileReader(registro);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("La agenda está vacía");
+        }
+        if(fileReader == null){
+            return null;
         }
         BufferedReader bufferedReader = new
                 BufferedReader(fileReader);
-        List<Persona> personas = new ArrayList<Persona>();
-        List<Persona> lines = new ArrayList<Persona>();
+        List<String> lines = new ArrayList<String>();
         String line = null;
         try {
-            Persona persona = new Persona();
-            int x = 0;
             while ((line = bufferedReader.readLine()) != null)
             {
-                if (x==0){
-                    persona.setName(line);
-                    x = x+1;
-                }
-                else {
-                    persona.setPhone(line);
-                    personas.add(persona);
-                    persona = new Persona();
-                    x=0;
-                }
+                lines.add(line);
             }
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return personas;
+        return lines;
     }
 }
