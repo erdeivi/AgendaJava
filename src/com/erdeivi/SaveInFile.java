@@ -1,6 +1,5 @@
 package com.erdeivi;
 
-import com.erdeivi.model.Persona;
 
 import java.io.*;
 import java.util.ArrayList;
